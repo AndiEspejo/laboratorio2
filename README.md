@@ -1,8 +1,8 @@
 # Laboratorio 2 - Spring Boot CI/CD
 
-[![CI/CD Pipeline](https://github.com/<usuario>/<repo>/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/<usuario>/<repo>/actions/workflows/build.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=<sonar_project_key>&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=<sonar_project_key>)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=<sonar_project_key>&metric=coverage)](https://sonarcloud.io/summary/new_code?id=<sonar_project_key>)
+[![CI/CD Pipeline](https://github.com/AndiEspejo/laboratorio2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/AndiEspejo/laboratorio2/blob/main/.github/workflows/build.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=AndiEspejo_laboratorio2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=AndiEspejo_laboratorio2)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=AndiEspejo_laboratorio2&metric=coverage)](https://sonarcloud.io/summary/new_code?id=AndiEspejo_laboratorio2)
 [![Known Vulnerabilities](https://snyk.io/test/github/<usuario>/<repo>/badge.svg)](https://snyk.io/test/github/<usuario>/<repo>)
 
 Implementation of a Simple App with the next operations:
