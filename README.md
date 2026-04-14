@@ -72,8 +72,6 @@ Generate package without tests:
 For the full laboratory flow, configure these repository secrets:
 
 - `SONAR_TOKEN`
-- `SONAR_PROJECT_KEY`
-- `SONAR_ORGANIZATION`
 - `SNYK_TOKEN`
 - `DOCKER_USERNAME`
 - `DOCKER_PASSWORD`
@@ -83,7 +81,7 @@ For the full laboratory flow, configure these repository secrets:
 ## Pipeline stages
 
 1. **tests** → runs unit tests with Maven
-2. **sonar** → publishes analysis to SonarCloud when secrets exist
+2. **sonar** → publishes analysis to SonarCloud using organization `andiespejo` and project key `AndiEspejo_laboratorio2`
 3. **build** → generates the JAR artifact
 4. **security** → runs Snyk when token exists
 5. **docker** → publishes the Docker image when credentials exist

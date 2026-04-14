@@ -19,8 +19,7 @@
 
     <properties>
         <java.version>11</java.version>
-        <sonar.projectKey>${env.SONAR_PROJECT_KEY}</sonar.projectKey>
-        <sonar.organization>${env.SONAR_ORGANIZATION}</sonar.organization>
+        <sonar.organization>andiespejo</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 

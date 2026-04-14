@@ -6,6 +6,8 @@ on:
     branches:
       - main
       - mi-rama
+  pull_request:
+    types: [opened, synchronize, reopened]
 
 jobs:
   tests:
@@ -27,32 +29,45 @@ jobs:
         run: mvn -B test
 
   sonar:
-    name: SonarCloud analysis
+    name: Build and analyze
     needs: tests
     runs-on: ubuntu-latest
     env:
       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
-      SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Set up JDK 11
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: '11'
-          cache: maven
+          distribution: zulu
+          java-version: '17'
 
-      - name: Skip SonarCloud when secrets are missing
-        if: env.SONAR_TOKEN == '' || env.SONAR_PROJECT_KEY == '' || env.SONAR_ORGANIZATION == ''
-        run: echo 'SonarCloud secrets are not configured yet. Skipping analysis.'
+      - name: Cache SonarQube packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
 
-      - name: Analyze with SonarCloud
-        if: env.SONAR_TOKEN != '' && env.SONAR_PROJECT_KEY != '' && env.SONAR_ORGANIZATION != ''
-        run: mvn -B verify sonar:sonar -Dsonar.login=$SONAR_TOKEN
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Skip SonarCloud when token is missing
+        if: env.SONAR_TOKEN == ''
+        run: echo 'SONAR_TOKEN is not configured yet. Skipping analysis.'
+
+      - name: Build and analyze
+        if: env.SONAR_TOKEN != ''
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=AndiEspejo_laboratorio2
 
   build:
     name: Build JAR
