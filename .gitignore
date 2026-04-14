@@ -1,0 +1,21 @@
+# Maven / Java
+/target/
+!.mvn/wrapper/maven-wrapper.properties
+*.class
+*.log
+
+# IDEs
+/.idea/
+*.iml
+/.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / secrets
+.env
+.env.*
+
+# Assignment material
+/*.pdf
